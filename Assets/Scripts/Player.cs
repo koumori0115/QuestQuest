@@ -6,7 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     //0,1,2,3の順で前、後ろ、左、右で対応
     int lastDirection = 1;
-    int prevDirection = 1;
+    int prevDirection = 4;
+    int[,] walk_direction = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 }, { 0, 0 }};
     Rigidbody2D rb2D;
     Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
     Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保存
@@ -57,6 +58,10 @@ public class Player : MonoBehaviour {
             Invoke("movestart", 0.3f);
             step = STEP.ATTACK;
         }
+        if (Input.GetMouseButton(0))
+        {
+            onClick();
+        }
 
     }
 
@@ -80,40 +85,37 @@ public class Player : MonoBehaviour {
     // ② 入力に応じて移動後の位置を算出
     void SetTargetPosition()
     {
-        Debug.Log("aaa");
         prevPos = new Vector3(
                     MultipleRound(gameObject.transform.position.x, 1),
                     MultipleRound(gameObject.transform.position.y, 1) - 1 / 2,
                     MultipleRound(gameObject.transform.position.z, 1));
+        lastDirection = 4;
         if (Input.GetKey(KeyCode.UpArrow) && button_h == false)
         {
             lastDirection = 0;
-            target += new Vector3(0, 1f, 0);
             button_h = true;
 
         }
         if (Input.GetKey(KeyCode.DownArrow) && button_h == false)
         {
             lastDirection = 1;
-            target += new Vector3(0, -1f, 0);
             button_h = true;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) && button_h == false)
         {
             lastDirection = 2;
-            target += new Vector3(-1f, 0, 0);
             button_h = true;
         }
 
         if (Input.GetKey(KeyCode.RightArrow) && button_h == false)
         {
             lastDirection = 3;
-            target += new Vector3(1f, 0, 0);
             button_h = true;
 
         }
-        if (lastDirection != prevDirection)
+        target += new Vector3(walk_direction[lastDirection, 0], walk_direction[lastDirection, 1]);
+        if (lastDirection != prevDirection && lastDirection != 4)
         {
             ChangeChip(direction[lastDirection], "Direction");
             ChangeChip(walk[lastDirection], "Walk");
@@ -180,4 +182,8 @@ public class Player : MonoBehaviour {
         
     }
     
+    public void onClick()
+    {
+        GetComponent<Serch>().serch(new Vector3Int((int)transform.position.x + walk_direction[lastDirection, 0], (int)transform.position.y + walk_direction[lastDirection, 1],0));
+    }
 }

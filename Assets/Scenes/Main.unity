@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 351824820}
   - component: {fileID: 351824822}
   - component: {fileID: 351824821}
+  - component: {fileID: 351824823}
   m_Layer: 0
   m_Name: Objects
   m_TagString: Untagged
@@ -803,7 +804,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -3, y: 11, z: 0}
     second:
       m_TileIndex: 46
@@ -875,7 +876,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -8, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -884,7 +885,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -7, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -893,7 +894,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -6, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -902,7 +903,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -5, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -911,7 +912,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -4, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -920,7 +921,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -3, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -929,7 +930,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -2, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -938,7 +939,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: -1, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -947,7 +948,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: 0, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -956,7 +957,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: 1, y: 12, z: 0}
     second:
       m_TileIndex: 53
@@ -965,7 +966,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 2
+      m_ColliderType: 0
   - first: {x: 2, y: 12, z: 0}
     second:
       m_TileIndex: 52
@@ -1967,6 +1968,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &351824823
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 351824819}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
 --- !u!1 &479901997
 GameObject:
   m_ObjectHideFlags: 0
