@@ -33,7 +33,7 @@ public class CPU : MonoBehaviour {
     {
         wait += 1;
 
-        if(wait >= 50){
+        if(wait >= 100){
 
             moveR = UnityEngine.Random.Range(0, 5);
             wait = 0;
@@ -60,8 +60,7 @@ public class CPU : MonoBehaviour {
         //最初に指定した場所と現在の場所を引いて一定の数字以上であれば動く。
         //そうでないならもう一度乱数を生成し直す
         //もしCPUの移動範囲を広げたいならif分の数字をいじれば変わる…はず
-        //乱数生成してる間にwaitの値が溜まっても困るのでwaitをここのelseでも0にする。念のため
-        //現状、何か行きすぎますね…
+        //乱数生成してる間にwaitの値が溜まっても困るので「wait」をここのelseでも0にする。念のため
 
         if (moveR == 0)
         {
