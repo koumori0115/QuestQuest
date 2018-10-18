@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
     {
         NONE = -1,
         STOP = 0,
-        MOVE,
+        MOVE = 1,
         ATTACK,
     };
     public STEP step = STEP.STOP;
@@ -44,15 +44,47 @@ public class Player : MonoBehaviour {
     void FixedUpdate()
     {
         if (step == STEP.STOP)
-                SetTargetPosition();
-        
+        {
+            SetTargetPosition();
+        }
+
         if (step == STEP.MOVE)
+        {
             StartCoroutine("Move");
+        }
+        if(step == STEP.NONE)
+        {
+            Invoke("movestart", 0.3f);
+            step = STEP.ATTACK;
+        }
+
+    }
+
+    public static float MultipleRound(float value, float multiple)
+    {
+        return MultipleFloor(value + multiple * 0.5f, multiple);
+    }
+
+    /// <summary>
+    /// より小さい倍数を求める（倍数で切り捨てられるような値）
+    ///（例）倍数 = 10 のとき、12 → 10, 17 → 10
+    /// </summary>
+    /// <param name="value">入力値</param>
+    /// <param name="multiple">倍数</param>
+    /// <returns>倍数で切り捨てた値</returns>
+    public static float MultipleFloor(float value, float multiple)
+    {
+        return Mathf.Floor(value / multiple) * multiple;
     }
 
     // ② 入力に応じて移動後の位置を算出
     void SetTargetPosition()
     {
+        Debug.Log("aaa");
+        prevPos = new Vector3(
+                    MultipleRound(gameObject.transform.position.x, 1),
+                    MultipleRound(gameObject.transform.position.y, 1) - 1 / 2,
+                    MultipleRound(gameObject.transform.position.z, 1));
         if (Input.GetKey(KeyCode.UpArrow) && button_h == false)
         {
             lastDirection = 0;
@@ -89,14 +121,9 @@ public class Player : MonoBehaviour {
         }
         if (target != prevPos)
         {
-            animator.SetBool("Walk", true);
+            animator.SetTrigger("Walk");
             step = STEP.MOVE;
-        }
-        else
-        {
-            animator.SetBool("Walk", false);
-        }
-        button_h = false;
+        }        
     }
 
     void ChangeChip(AnimationClip d, string name)
@@ -108,9 +135,10 @@ public class Player : MonoBehaviour {
     // ③ 目的地へ移動する
     IEnumerator Move()
     {
-        float sqrRemainingDistance = (transform.position - target).sqrMagnitude;
+        float sqrRemainingDistance = 0;
+        if(sqrRemainingDistance == 0)
+            sqrRemainingDistance = (transform.position - target).sqrMagnitude;
 
-        
         while (sqrRemainingDistance > float.Epsilon)
         {
             
@@ -125,12 +153,31 @@ public class Player : MonoBehaviour {
             
             yield return null;
         }
-        step = STEP.STOP;
-        prevPos = transform.position;
-       
+        step = STEP.NONE;
+        transform.position = new Vector3(
+            MultipleRound(gameObject.transform.position.x, 1),
+            MultipleRound(gameObject.transform.position.y, 1) - 1 / 2,
+            MultipleRound(gameObject.transform.position.z, 1));
+        
 
     }
 
+    void movestart()
+    {
+        if (step == STEP.ATTACK)
+        {
+            step = STEP.STOP;
+            button_h = false;
+            
+            Debug.Log("bbbb");
+        }
+        
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        target = prevPos;
+        transform.position = prevPos;
+        
+    }
     
-
 }
