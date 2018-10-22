@@ -184,6 +184,6 @@ public class Player : MonoBehaviour {
     
     public void onClick()
     {
-        //GetComponent<Serch>().serch(new Vector3Int((int)transform.position.x + walk_direction[lastDirection, 0], (int)transform.position.y + walk_direction[lastDirection, 1],0));
+        GetComponent<Serch>().serch(new Vector3Int((int)transform.position.x + walk_direction[lastDirection, 0], (int)transform.position.y + walk_direction[lastDirection, 1],0));
     }
 }

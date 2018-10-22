@@ -5,9 +5,10 @@ using UnityEngine.Tilemaps;
 
 public class Serch : MonoBehaviour {
     GameObject check;
-    public Tilemap tilemap;
+    Tilemap tilemap;
     // Use this for initialization
     void Start () {
+        Tilemap tilemap = GetComponent<Tilemap>();
         Debug.Log(tilemap.GetSprite(new Vector3Int(-9, 13, 0)));
     }
 	
