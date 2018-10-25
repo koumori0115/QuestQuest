@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     //0,1,2,3の順で前、後ろ、左、右で対応
     int lastDirection = 1;
-    int prevDirection = 4;
+    int prevDirection = 1;
     int[,] walk_direction = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 }, { 0, 0 }};
     Rigidbody2D rb2D;
     Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
         NONE = -1,
         STOP = 0,
         MOVE = 1,
-        ATTACK,
+        WAIT = 2,
     };
     public STEP step = STEP.STOP;
 
@@ -55,10 +55,10 @@ public class Player : MonoBehaviour {
         }
         if(step == STEP.NONE)
         {
-            Invoke("movestart", 0.3f);
-            step = STEP.ATTACK;
+            moveStart(0.1f);
+            step = STEP.WAIT;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) && step == STEP.STOP)
         {
             onClick();
         }
@@ -145,14 +145,11 @@ public class Player : MonoBehaviour {
         {
             
             Vector3 newPostion = Vector3.MoveTowards(rb2D.position, target, 5f * Time.deltaTime);
-
             
             rb2D.MovePosition(newPostion);
-
             
             sqrRemainingDistance = (transform.position - target).sqrMagnitude;
 
-            
             yield return null;
         }
         step = STEP.NONE;
@@ -160,20 +157,19 @@ public class Player : MonoBehaviour {
             MultipleRound(gameObject.transform.position.x, 1),
             MultipleRound(gameObject.transform.position.y, 1) - 1 / 2,
             MultipleRound(gameObject.transform.position.z, 1));
-        
-
     }
 
-    void movestart()
+    public void moveStart(float wait)
     {
-        if (step == STEP.ATTACK)
+        Invoke("waitEnd", wait);
+    }
+    private void waitEnd()
+    {
+        if (step == STEP.WAIT)
         {
             step = STEP.STOP;
             button_h = false;
-            
-            Debug.Log("bbbb");
         }
-        
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -184,6 +180,7 @@ public class Player : MonoBehaviour {
     
     public void onClick()
     {
-        GetComponent<Serch>().serch(new Vector3Int((int)transform.position.x + walk_direction[lastDirection, 0], (int)transform.position.y + walk_direction[lastDirection, 1],0));
+        GetComponent<Serch>().serch(new Vector3Int(Mathf.CeilToInt(transform.position.x + walk_direction[prevDirection, 0]), Mathf.CeilToInt(transform.position.y + walk_direction[prevDirection, 1]),0));
+        step = STEP.WAIT;
     }
 }
