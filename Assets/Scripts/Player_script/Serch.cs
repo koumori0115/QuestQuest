@@ -8,7 +8,7 @@ public class Serch : MonoBehaviour {
     public Tilemap tilemap;
     // Use this for initialization
     void Start () {
-        Debug.Log(tilemap.GetSprite(new Vector3Int(-9, 13, 0)));
+        
     }
 	
 	// Update is called once per frame
@@ -16,9 +16,18 @@ public class Serch : MonoBehaviour {
 		
 	}
 
-    public void serch(Vector3Int serchposition)
+    public void serch(Vector3 serchposition)
     {
-        if(tilemap.GetInstantiatedObject(serchposition) != null)
-            Debug.Log(tilemap.GetInstantiatedObject(serchposition));
+        try
+        {
+            if (GameObject.Find("GameManager").GetComponent<Item_List>().getItem(serchposition) != null)
+            {
+                GameObject.Find("GameManager").GetComponent<Item_List>().getItem(serchposition).information();
+            }
+        }
+        catch
+        {
+            Debug.Log("error");
+        }
     }
 }
