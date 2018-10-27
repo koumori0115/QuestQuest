@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Log : MonoBehaviour {
 
     public List<string> information = new List<string>();
     [SerializeField] Text uiText;   // uiTextへの参照
     [SerializeField] GameObject scroll;
-    [SerializeField]
+    [SerializeField] GameObject menuButton;
     [Range(0.001f, 0.3f)]
     float intervalForCharDisplay = 0.05f;   // 1文字の表示にかける時間
     private string currentSentence = string.Empty;  // 現在の文字列
@@ -24,6 +25,11 @@ public class Log : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (EventSystem.current.tag == "button")
+        {
+            Debug.Log(EventSystem.current.IsPointerOverGameObject().ToString());
+            return;
+        }
         if (saisei)
         {
             // 文章の表示完了 / 未完了
@@ -38,6 +44,7 @@ public class Log : MonoBehaviour {
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
+                    menuButton.SetActive(true);
                     GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
                     saisei = false;
 
@@ -90,6 +97,7 @@ public class Log : MonoBehaviour {
     {
         if (!saisei)
         {
+            menuButton.SetActive(false);
             scroll.SetActive(true);
             saisei = true;
             foreach (string s in information)

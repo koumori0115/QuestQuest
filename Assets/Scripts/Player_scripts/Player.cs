@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class Player : MonoBehaviour {
@@ -58,10 +59,16 @@ public class Player : MonoBehaviour {
             moveStart(0.1f);
             step = STEP.WAIT;
         }
+        
         if (Input.GetMouseButtonDown(0) && step == STEP.STOP)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             onClick();
         }
+        
 
     }
 
@@ -180,7 +187,19 @@ public class Player : MonoBehaviour {
     
     public void onClick()
     {
-        GetComponent<Serch>().serch(new Vector3Int(Mathf.CeilToInt(transform.position.x + walk_direction[prevDirection, 0]), Mathf.CeilToInt(transform.position.y + walk_direction[prevDirection, 1]),0));
+        Vector3 nowPosition = new Vector3Int(Mathf.CeilToInt(transform.position.x + walk_direction[prevDirection, 0]), Mathf.CeilToInt(transform.position.y + walk_direction[prevDirection, 1]), 0);
+        try
+        {
+            if (GameObject.Find("GameManager").GetComponent<Item_List>().getItem(nowPosition) != null)
+            {
+                GameObject.Find("GameManager").GetComponent<Item_List>().getItem(nowPosition).information();
+            }
+        }
+        catch
+        {
+            Debug.Log("error");
+        }
+        
         step = STEP.WAIT;
     }
 }
