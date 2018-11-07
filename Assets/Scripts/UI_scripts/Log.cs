@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Log : MonoBehaviour {
 
     public List<string> information = new List<string>();
     [SerializeField] Text uiText;   // uiTextへの参照
     [SerializeField] GameObject scroll;
-    [SerializeField]
+    [SerializeField] GameObject menuButton;
     [Range(0.001f, 0.3f)]
     float intervalForCharDisplay = 0.05f;   // 1文字の表示にかける時間
     private string currentSentence = string.Empty;  // 現在の文字列
@@ -30,14 +31,16 @@ public class Log : MonoBehaviour {
             if (IsDisplayComplete())
             {
                 //最後の文章ではない & ボタンが押された
-                if (information.Count > 0 && Input.GetMouseButtonDown(0))
+                if (information.Count > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
                     SetSentence();
                 }
-                else if (information.Count == 0 && Input.GetMouseButtonDown(0) && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                     
+                else if (information.Count == 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
+                    menuButton.SetActive(true);
                     GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
                     saisei = false;
 
@@ -46,7 +49,7 @@ public class Log : MonoBehaviour {
             else
             {
                 //ボタンが押された
-                if (Input.GetMouseButtonDown(0))
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
                     timeUntilDisplay = 0; //※1
                 }
@@ -90,6 +93,7 @@ public class Log : MonoBehaviour {
     {
         if (!saisei)
         {
+            menuButton.SetActive(false);
             scroll.SetActive(true);
             saisei = true;
             foreach (string s in information)

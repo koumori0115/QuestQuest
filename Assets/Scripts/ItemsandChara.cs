@@ -56,8 +56,5 @@ public class ItemsandChara : MonoBehaviour {
     {
         return zahyou;
     }
-    public virtual void eventResult()
-    {
-
-    }
+    public virtual void eventResult() { }
 }
