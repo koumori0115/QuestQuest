@@ -63,12 +63,10 @@ public class Player : MonoBehaviour {
         {
             return;
         }
+        touchDirection();
         if (step == STEP.STOP)
         {
-
-            touchDirection();
             SetTargetPosition();
-
         }
                 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && step == STEP.STOP && flagSerch == true)
@@ -204,6 +202,7 @@ public class Player : MonoBehaviour {
             if (GameObject.Find("GameManager").GetComponent<Item_List>().getItem(nowPosition) != null)
             {
                 GameObject.Find("GameManager").GetComponent<Item_List>().getItem(nowPosition).information();
+                step = STEP.WAIT;
             }
         }
         catch
@@ -211,7 +210,7 @@ public class Player : MonoBehaviour {
             Debug.Log("error");
         }
         
-        step = STEP.WAIT;
+        
     }
     void touchDirection()
     {
@@ -257,7 +256,12 @@ public class Player : MonoBehaviour {
                     waitTime = 0;
                     moveButton.SetActive(false);
                     break;
-            }            
+            }
+        }
+        else
+        {
+            waitTime = 0;
+            moveButton.SetActive(false);
         }
     }
     void MoveDirection(Vector3 prev, Vector3 next)
