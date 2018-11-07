@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour {
@@ -28,6 +29,9 @@ public class Player : MonoBehaviour {
     private AnimatorOverrideController overrideController;
     AnimatorStateInfo stateInfo;
     bool button_h = false;
+    bool flagSerch = false;
+    [SerializeField] GameObject moveButton;
+    int waitTime = 0;
     
 
     void Start()
@@ -45,24 +49,31 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (step == STEP.STOP)
-        {
-            SetTargetPosition();
-        }
 
         if (step == STEP.MOVE)
         {
             StartCoroutine("Move");
         }
-        if(step == STEP.NONE)
+        if (step == STEP.NONE)
         {
-            moveStart(0.1f);
+            moveStart(0.2f);
             step = STEP.WAIT;
         }
-        
-        if (Input.GetMouseButtonDown(0) && step == STEP.STOP)
+        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        }
+        if (step == STEP.STOP)
+        {
+
+            touchDirection();
+            SetTargetPosition();
+
+        }
+                
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && step == STEP.STOP && flagSerch == true)
+        {
+            if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
                 return;
             }
@@ -96,7 +107,7 @@ public class Player : MonoBehaviour {
                     MultipleRound(gameObject.transform.position.x, 1),
                     MultipleRound(gameObject.transform.position.y, 1) - 1 / 2,
                     MultipleRound(gameObject.transform.position.z, 1));
-        lastDirection = 4;
+        //lastDirection = 4;
         if (Input.GetKey(KeyCode.UpArrow) && button_h == false)
         {
             lastDirection = 0;
@@ -201,5 +212,72 @@ public class Player : MonoBehaviour {
         }
         
         step = STEP.WAIT;
+    }
+    void touchDirection()
+    {
+        Debug.Log(step);
+        lastDirection = 4;
+
+        if (Input.touchCount > 0)
+        {
+            Touch t = Input.GetTouch(0);
+            Debug.Log(t.phase);
+            switch (t.phase)
+            {
+                case TouchPhase.Began:
+                    flagSerch = true;
+                    break;
+
+                case TouchPhase.Stationary:
+                    waitTime++;
+                    if (waitTime > 20 && flagSerch == true)
+                    {
+                        moveButton.transform.position = t.rawPosition;
+                        moveButton.SetActive(true);
+                        flagSerch = false;
+                    }
+                    if (flagSerch == false)
+                    {
+                        MoveDirection(t.rawPosition, t.position);
+                    }
+                    break;
+
+                case TouchPhase.Moved:
+                    if (flagSerch == false)
+                    {
+                        MoveDirection(t.rawPosition, t.position);
+                    }
+                    break;
+
+                case TouchPhase.Canceled:
+                    waitTime = 0;
+                    moveButton.SetActive(false);
+                    break;
+                case TouchPhase.Ended:
+                    waitTime = 0;
+                    moveButton.SetActive(false);
+                    break;
+            }            
+        }
+    }
+    void MoveDirection(Vector3 prev, Vector3 next)
+    {
+        Vector3 movePosition = next - prev;
+        if (movePosition.y > 0 && movePosition.x >= -movePosition.y && movePosition.x <= movePosition.y)
+        {
+            lastDirection = 0;
+        }
+        if (movePosition.y < 0 && movePosition.x <= -movePosition.y && movePosition.x >= movePosition.y)
+        {
+            lastDirection = 1;
+        }
+        if (movePosition.x < 0 && movePosition.y < -movePosition.x && movePosition.y > movePosition.x)
+        {
+            lastDirection = 2;
+        }
+        if (movePosition.x > 0 && movePosition.y > -movePosition.x && movePosition.y < movePosition.x)
+        {
+            lastDirection = 3;
+        }
     }
 }

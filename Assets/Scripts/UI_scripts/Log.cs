@@ -25,22 +25,18 @@ public class Log : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (EventSystem.current.tag == "button")
-        {
-            Debug.Log(EventSystem.current.IsPointerOverGameObject().ToString());
-            return;
-        }
         if (saisei)
         {
             // 文章の表示完了 / 未完了
             if (IsDisplayComplete())
             {
                 //最後の文章ではない & ボタンが押された
-                if (information.Count > 0 && Input.GetMouseButtonDown(0))
+                if (information.Count > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
                     SetSentence();
                 }
-                else if (information.Count == 0 && Input.GetMouseButtonDown(0) && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                     
+                else if (information.Count == 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
@@ -53,7 +49,7 @@ public class Log : MonoBehaviour {
             else
             {
                 //ボタンが押された
-                if (Input.GetMouseButtonDown(0))
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
                     timeUntilDisplay = 0; //※1
                 }
