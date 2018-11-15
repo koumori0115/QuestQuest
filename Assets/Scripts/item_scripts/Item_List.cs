@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item_List : MonoBehaviour {
     List<ItemsandChara> list = new List<ItemsandChara>();
-
+    List<UseItem> useItems = new List<UseItem>();
     private void Awake()
     {
         
@@ -39,4 +39,15 @@ public class Item_List : MonoBehaviour {
         }
         return null;
     }
+
+    public void setUseItems(UseItem item)
+    {
+        useItems.Add(item);
+    }
+    public void removeUseItems(UseItem item)
+    {
+        useItems.Remove(item);
+    }
+
+    
 }
