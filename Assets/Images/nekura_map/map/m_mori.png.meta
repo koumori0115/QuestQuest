@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 37901b2c4d611934bb7d1932bccab98e
 TextureImporter:
   fileIDToRecycleName:
@@ -152,6 +153,11 @@ TextureImporter:
     21300294: m_mori_147
     21300296: m_mori_148
     21300298: m_mori_149
+=======
+guid: 2e9dbad33cb0b8946847e4620f37e6f3
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> master
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -190,12 +196,16 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> master
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -219,6 +229,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+<<<<<<< HEAD
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -3259,6 +3270,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 74e72bd10f4562a4eaf969d2e2b1e7b2
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b0223645520b417459ae29f42e5cf05c
+>>>>>>> master
     vertices: []
     indices: 
     edges: []

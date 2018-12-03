@@ -28,7 +28,7 @@ namespace UnityEditor
 				Undo.MoveGameObjectToScene(instance, brushTarget.scene, "Paint Prefabs");
 				Undo.RegisterCreatedObjectUndo((Object)instance, "Paint Prefabs");
 				instance.transform.SetParent(brushTarget.transform);
-				instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3Int(position.x, position.y, m_Z) + new Vector3(.5f, .5f, .5f)));
+				instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3(position.x + 0.5f, position.y + 0.5f, m_Z) + new Vector3(.5f, .5f, .5f)));
 			}
 		}
 
