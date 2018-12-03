@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HPbar : MonoBehaviour {
-
+    [SerializeField]
     PlayerStatus player;
 
     Slider hp;
