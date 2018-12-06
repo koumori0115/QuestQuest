@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattoleUI : MonoBehaviour {
+public class BattleUI : MonoBehaviour {
     public GameObject BattleButton;
     public GameObject ItemButton;
     public GameObject EscapeButton;
