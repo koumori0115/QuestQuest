@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatus : Status {
-
     int gold;
     List<string> skills = new List<string>();
 	// Use this for initialization

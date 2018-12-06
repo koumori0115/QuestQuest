@@ -17,6 +17,7 @@ public class Log : MonoBehaviour {
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
     private int lastUpdateCharCount = -1;       // 表示中の文字数
     bool saisei = false;
+    
 
     // Use this for initialization
     void Start () {
