@@ -24,7 +24,7 @@ public class ItemsandChara : MonoBehaviour {
 		
 	}
 
-    public void information()
+    public virtual void information()
     {
         if (event_flag)
         {
