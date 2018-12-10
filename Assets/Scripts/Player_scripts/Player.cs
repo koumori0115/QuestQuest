@@ -214,13 +214,11 @@ public class Player : MonoBehaviour {
     }
     void touchDirection()
     {
-        Debug.Log(step);
         lastDirection = 4;
 
         if (Input.touchCount > 0)
         {
             Touch t = Input.GetTouch(0);
-            Debug.Log(t.phase);
             switch (t.phase)
             {
                 case TouchPhase.Began:

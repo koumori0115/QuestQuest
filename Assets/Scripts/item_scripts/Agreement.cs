@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseItem : MonoBehaviour {
+public class Agreement : UseItem {
 
 	// Use this for initialization
 	void Start () {
@@ -11,12 +11,11 @@ public class UseItem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    	
+		
 	}
-
-    public virtual void ItemResult()
+    public override void ItemResult()
     {
-
+        base.ItemResult();
+        Debug.Log("aaa");
     }
-
 }
