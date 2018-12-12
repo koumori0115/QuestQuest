@@ -17,6 +17,8 @@ public class Log : MonoBehaviour {
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
     private int lastUpdateCharCount = -1;       // 表示中の文字数
     bool saisei = false;
+    //itemlogが0以外だったらitemを参照したlogになる
+    int itemlog = 0;
     
 
     // Use this for initialization
@@ -42,7 +44,14 @@ public class Log : MonoBehaviour {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
-                    GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
+                    if (itemlog == 0)
+                    {
+                        GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
+                    }
+                    else
+                    {
+                        itemlog = 0;
+                    }
                     saisei = false;
 
                 }
@@ -103,5 +112,21 @@ public class Log : MonoBehaviour {
             }
         }
     }
+
+    public void setInformation(List<string> information, int i)
+    {
+        if (!saisei)
+        {
+            menuButton.SetActive(false);
+            scroll.SetActive(true);
+            saisei = true;
+            foreach (string s in information)
+            {
+                this.information.Add(s);
+            }
+        }
+        itemlog = i;
+    }
+
 
 }

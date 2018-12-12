@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     private AnimatorOverrideController overrideController;
     AnimatorStateInfo stateInfo;
     bool button_h = false;
-    bool flagSerch = true;
+    bool flagSerch = false;
     [SerializeField] GameObject moveButton;
     int waitTime = 0;
     

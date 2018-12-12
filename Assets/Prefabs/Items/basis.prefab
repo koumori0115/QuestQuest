@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4597306516973274}
   - component: {fileID: 212422155624741002}
-  - component: {fileID: 114441792381894832}
   - component: {fileID: 61341782754686124}
+  - component: {fileID: 114709947888266288}
   m_Layer: 0
   m_Name: basis
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114441792381894832
+--- !u!114 &114709947888266288
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   event_flag: 0
+  eventObject: {fileID: 0}
 --- !u!212 &212422155624741002
 SpriteRenderer:
   m_ObjectHideFlags: 1
