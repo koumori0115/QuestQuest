@@ -9,8 +9,13 @@ public class BattleLog : MonoBehaviour
 
     public List<string> information = new List<string>();
     [SerializeField] Text uiText;   // uiTextへの参照
+    [SerializeField] Text hpText;
+    [SerializeField] Text mpText;
     [SerializeField] GameObject scroll;
-    [SerializeField] BattoleUI button;
+    [SerializeField] GameObject[] enemies;
+    [SerializeField] GameObject damageEfect;
+
+    BattleUI button;
     [Range(0.001f, 0.3f)]
     float intervalForCharDisplay = 0.05f;   // 1文字の表示にかける時間
     private string currentSentence = string.Empty;  // 現在の文字列
@@ -20,12 +25,17 @@ public class BattleLog : MonoBehaviour
     bool turn = false;
     bool saisei = false;
     bool efecton = false;
-    SceneMove scene = new SceneMove();
+    GameSceneMove scene = new GameSceneMove();
+    PlayerStatus player;
+    
+    int damage = 0;
+
 
     // Use this for initialization
     void Start()
     {
-
+        button = GetComponent<BattleUI>();
+        player = GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -37,7 +47,7 @@ public class BattleLog : MonoBehaviour
             if (IsDisplayComplete())
             {
                 if (efecton)
-                {
+                {   
                     //エフェクトを入れる
                     StartCoroutine("Efect");
                     efecton = false;
@@ -88,10 +98,20 @@ public class BattleLog : MonoBehaviour
         {
             scene.GameOver();
         }
+        if (currentSentence.Equals("kill"))
+        {
+            foreach (GameObject enemy in enemies)
+            {
+                enemy.GetComponent<Blink>().Kill();
+                
+            }
+            information.RemoveAt(0);
+            currentSentence = information[0];
+        }
         if (Check(currentSentence))
         {
-
-            currentSentence += "のダメージ";
+            damage = int.Parse(currentSentence);
+            currentSentence += "のダメージ。";
             efecton = true;
         }
         timeUntilDisplay = currentSentence.Length * intervalForCharDisplay;
@@ -137,20 +157,40 @@ public class BattleLog : MonoBehaviour
 
     IEnumerator Efect()
     {
-        Debug.Log("aaa");
         if (turn)
         {
-            //プレイヤーのＨＰ減算処理、エフェクト
+            //プレイヤーエフェクト
+            damageEfect.GetComponent<Blink>().SaiseiChange();
+            
         }
         else
         {
             //敵のダメージエフェクト
+            foreach(GameObject enemy in enemies)
+            {
+                enemy.GetComponent<Blink>().SaiseiChange();
+            }
+        }
+        
+        saisei = false;
+        yield return new WaitForSeconds(1);
+        if (turn)
+        {
+            //エフェクト終了,減算処理
+            GetComponent<PlayerStatus>().HP = -damage;
+            hpText.text = GetComponent<PlayerStatus>().HP + "/100";
+            damageEfect.GetComponent<Blink>().SaiseiChange();
+        }
+        else
+        {
+            //敵のダメージエフェクト終了
+            foreach (GameObject enemy in enemies)
+            {
+                enemy.GetComponent<Blink>().SaiseiChange();
+            }
         }
         turn = !turn;
-        saisei = false;
-        yield return new WaitForSeconds(2);
         saisei = true;
-        Debug.Log("BBB");
     }
 
 }

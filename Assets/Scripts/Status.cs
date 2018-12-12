@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Status : MonoBehaviour {
-    protected int hp;
-    protected int mp;
+    protected int hp = 100;
+    protected int mp = 100;
     protected int attack;
     protected int defense;
     protected int level = 1;
-	// Use this for initialization
-	void Start () {
+    const int HPMAX = 100;
+    const int MPMAX = 100;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -20,12 +22,26 @@ public class Status : MonoBehaviour {
 
     public int HP
     {
-        set { hp += value; }
+        set
+        {
+            hp += value;
+            if(hp < 0)
+            {
+                hp = 0;
+            }
+        }
         get { return hp; }
     }
     public int MP
     {
-        set { mp += value; }
+        set
+        {
+            mp += value;
+            if (mp < 0)
+            {
+                mp = 0;
+            }
+        }
         get { return mp; }
     }
     public int Attack
@@ -42,5 +58,15 @@ public class Status : MonoBehaviour {
     {
         set { level += value; }
         get { return level; }
+    }
+
+    public float HpRemaing()
+    {
+        return (float)hp / HPMAX;
+    }
+
+    public float MpRemaing()
+    {
+        return (float)mp / MPMAX;
     }
 }
