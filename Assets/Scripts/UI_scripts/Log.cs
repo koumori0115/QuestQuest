@@ -32,12 +32,12 @@ public class Log : MonoBehaviour {
             if (IsDisplayComplete())
             {
                 //最後の文章ではない & ボタンが押された
-                if (information.Count > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                if (information.Count > 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     SetSentence();
                 }
                      
-                else if (information.Count == 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
@@ -50,7 +50,7 @@ public class Log : MonoBehaviour {
             else
             {
                 //ボタンが押された
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     timeUntilDisplay = 0; //※1
                 }

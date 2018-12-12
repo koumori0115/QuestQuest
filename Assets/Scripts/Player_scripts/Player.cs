@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     private AnimatorOverrideController overrideController;
     AnimatorStateInfo stateInfo;
     bool button_h = false;
-    bool flagSerch = false;
+    bool flagSerch = true;
     [SerializeField] GameObject moveButton;
     int waitTime = 0;
     
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour {
         }
         if (step == STEP.NONE)
         {
-            moveStart(0.2f);
+            moveStart(0.1f);
             step = STEP.WAIT;
         }
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
@@ -69,9 +69,9 @@ public class Player : MonoBehaviour {
             SetTargetPosition();
         }
                 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && step == STEP.STOP && flagSerch == true)
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && step == STEP.STOP && flagSerch == true)
         {
-            if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            if (Input.touchCount > 0 && EventSystem.current.tag == "button")
             {
                 return;
             }
@@ -202,7 +202,9 @@ public class Player : MonoBehaviour {
             if (GameObject.Find("GameManager").GetComponent<Item_List>().getItem(nowPosition) != null)
             {
                 GameObject.Find("GameManager").GetComponent<Item_List>().getItem(nowPosition).information();
+                Debug.Log(step);
                 step = STEP.WAIT;
+                Debug.Log(step);
             }
         }
         catch
@@ -214,13 +216,11 @@ public class Player : MonoBehaviour {
     }
     void touchDirection()
     {
-        Debug.Log(step);
         lastDirection = 4;
 
         if (Input.touchCount > 0)
         {
             Touch t = Input.GetTouch(0);
-            Debug.Log(t.phase);
             switch (t.phase)
             {
                 case TouchPhase.Began:
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour {
 
                 case TouchPhase.Stationary:
                     waitTime++;
-                    if (waitTime > 20 && flagSerch == true)
+                    if (waitTime > 10 && flagSerch == true)
                     {
                         moveButton.transform.position = t.rawPosition;
                         moveButton.SetActive(true);
