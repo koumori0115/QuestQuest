@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Agreement : UseItem {
+public class GameSceneMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,9 +14,8 @@ public class Agreement : UseItem {
 	void Update () {
 		
 	}
-    public override void ItemResult()
+    public void GameOver()
     {
-        base.ItemResult();
-        Debug.Log("aaa");
+        SceneManager.LoadScene("GameOver");
     }
 }

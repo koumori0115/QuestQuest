@@ -1,21 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SceneMove : MonoBehaviour {
+public class Agreement : UseItem {
 
 	// Use this for initialization
-	void Start () {
-		
+    public override void Start () {
+        base.Start();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    public void GameOver()
+    public override void ItemResult()
     {
-        SceneManager.LoadScene("GameOver");
+        
+        Debug.Log("aaa");
     }
 }

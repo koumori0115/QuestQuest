@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Item_List : MonoBehaviour {
     List<ItemsandChara> list = new List<ItemsandChara>();
-    List<UseItem> useItems = new List<UseItem>();
+    List<GameObject> useItems = new List<GameObject>();
+    GameObject itemPanel;
     private void Awake()
     {
         
@@ -40,11 +41,23 @@ public class Item_List : MonoBehaviour {
         return null;
     }
 
-    public void setUseItems(UseItem item)
+    public void setUseItems(GameObject item)
     {
         useItems.Add(item);
+        if(useItems.Count < 12)
+        {
+            Transform parentObject = GameObject.Find("Canvas").transform.Find("ItemPanel/Panel" + ((useItems.Count) % 12));
+            try
+            {
+                Instantiate(item, parentObject.position, Quaternion.identity, parentObject);
+            }
+            catch
+            {
+                Debug.Log("生成ミス");
+            }
+        }
     }
-    public void removeUseItems(UseItem item)
+    public void removeUseItems(GameObject item)
     {
         useItems.Remove(item);
     }
