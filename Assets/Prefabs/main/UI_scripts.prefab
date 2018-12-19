@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4557453133206448}
   - component: {fileID: 114214199943382848}
+  - component: {fileID: 114659247211906472}
   m_Layer: 0
   m_Name: UI_scripts
   m_TagString: Untagged
@@ -33,8 +34,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439868861913534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.99833, y: 13.089756, z: 3.1286454}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 33.99829, y: 13.089661, z: 3.1286454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,3 +56,16 @@ MonoBehaviour:
   uiText: {fileID: 0}
   scroll: {fileID: 0}
   menuButton: {fileID: 0}
+--- !u!114 &114659247211906472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439868861913534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa5eaaf2891eb04c86d30d4d640322b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuPanel: {fileID: 0}
+  ItemPanel: {fileID: 0}

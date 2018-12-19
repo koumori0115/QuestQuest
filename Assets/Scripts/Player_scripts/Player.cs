@@ -29,9 +29,10 @@ public class Player : MonoBehaviour {
     private AnimatorOverrideController overrideController;
     AnimatorStateInfo stateInfo;
     bool button_h = false;
-    bool flagSerch = true;
+    bool flagSerch = false;
     [SerializeField] GameObject moveButton;
     int waitTime = 0;
+
     
 
     void Start()
@@ -46,36 +47,68 @@ public class Player : MonoBehaviour {
         animator.runtimeAnimatorController = overrideController;
         rb2D = GetComponent<Rigidbody2D>();
     }
+    private void LateUpdate()
+    {
+        if(Mathf.Abs(target.x) - Mathf.Abs(transform.position.x) < 0.1 && target.y == transform.position.y)
+        {
+            transform.position = target;
+            step = STEP.STOP;
+        }
+        if (Mathf.Abs(target.y) - Mathf.Abs(transform.position.y) < 0.1 && target.x == transform.position.x)
+        {
+            transform.position = target;
+            step = STEP.STOP;
+        }
+
+
+    }
 
     void FixedUpdate()
     {
 
         if (step == STEP.MOVE)
         {
-            StartCoroutine("Move");
-        }
-        if (step == STEP.NONE)
-        {
-            moveStart(0.1f);
-            step = STEP.WAIT;
-        }
-        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        {
-            return;
-        }
-        touchDirection();
-        if (step == STEP.STOP)
-        {
-            SetTargetPosition();
-        }
-                
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && step == STEP.STOP && flagSerch == true)
-        {
-            if (Input.touchCount > 0 && EventSystem.current.tag == "button")
+            //StartCoroutine("Move");
+            switch (lastDirection)
+            {
+                case 0:
+                    rb2D.velocity = Vector3.forward * 0.1f;
+                    break;
+                case 1:
+                    rb2D.velocity = Vector3.back * 0.1f;
+                    break;
+                case 2:
+                    rb2D.velocity = Vector3.left * 0.1f;
+                    break;
+                case 3:
+                    rb2D.velocity = Vector3.right * 0.1f;
+                    break;
+
+            }
+
+            if (step == STEP.NONE)
+            {
+                moveStart(0.01f);
+                step = STEP.WAIT;
+            }
+            if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
                 return;
             }
-            onClick();
+            touchDirection();
+            if (step == STEP.STOP)
+            {
+                SetTargetPosition();
+            }
+
+            if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && step == STEP.STOP && flagSerch == true)
+            {
+                if (Input.touchCount > 0 && EventSystem.current.tag == "button")
+                {
+                    return;
+                }
+                onClick();
+            }
         }
         
 
@@ -149,7 +182,7 @@ public class Player : MonoBehaviour {
         overrideController[name] = d;
         animator.runtimeAnimatorController = overrideController;
     }
-
+    /*
     // ③ 目的地へ移動する
     IEnumerator Move()
     {
@@ -168,12 +201,14 @@ public class Player : MonoBehaviour {
 
             yield return null;
         }
-        step = STEP.NONE;
+        step = STEP.STOP;
+        button_h = false;
         transform.position = new Vector3(
             MultipleRound(gameObject.transform.position.x, 1),
             MultipleRound(gameObject.transform.position.y, 1) - 1 / 2,
             MultipleRound(gameObject.transform.position.z, 1));
     }
+    */
 
     public void moveStart(float wait)
     {
