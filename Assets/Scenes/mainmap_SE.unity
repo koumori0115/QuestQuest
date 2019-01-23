@@ -46513,7 +46513,6 @@ GameObject:
   - component: {fileID: 1760061669}
   - component: {fileID: 1760061668}
   - component: {fileID: 1760061667}
-  - component: {fileID: 1760061666}
   m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
@@ -46535,18 +46534,6 @@ Transform:
   m_Father: {fileID: 242685992}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1760061666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114260785697697154, guid: 19d963ce94d41914ba572c45c1bbf1c5,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1760061664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5368308d4942bc049aeabb3534e62ff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!19719996 &1760061667
 TilemapCollider2D:
   m_ObjectHideFlags: 0

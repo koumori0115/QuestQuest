@@ -39,14 +39,14 @@ public class Log : MonoBehaviour {
                     SetSentence();
                 }
                      
-                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
                     if (itemlog == 0)
                     {
-                        GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
+                        
                     }
                     else
                     {
