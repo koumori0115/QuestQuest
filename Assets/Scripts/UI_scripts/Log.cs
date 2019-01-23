@@ -17,6 +17,8 @@ public class Log : MonoBehaviour {
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
     private int lastUpdateCharCount = -1;       // 表示中の文字数
     bool saisei = false;
+    //itemlogが0以外だったらitemを参照したlogになる
+    int itemlog = 0;
     
 
     // Use this for initialization
@@ -32,17 +34,24 @@ public class Log : MonoBehaviour {
             if (IsDisplayComplete())
             {
                 //最後の文章ではない & ボタンが押された
-                if (information.Count > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                if (information.Count > 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     SetSentence();
                 }
                      
-                else if (information.Count == 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
-                    GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
+                    if (itemlog == 0)
+                    {
+                        
+                    }
+                    else
+                    {
+                        itemlog = 0;
+                    }
                     saisei = false;
 
                 }
@@ -50,7 +59,7 @@ public class Log : MonoBehaviour {
             else
             {
                 //ボタンが押された
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     timeUntilDisplay = 0; //※1
                 }
@@ -103,5 +112,21 @@ public class Log : MonoBehaviour {
             }
         }
     }
+
+    public void setInformation(List<string> information, int i)
+    {
+        if (!saisei)
+        {
+            menuButton.SetActive(false);
+            scroll.SetActive(true);
+            saisei = true;
+            foreach (string s in information)
+            {
+                this.information.Add(s);
+            }
+        }
+        itemlog = i;
+    }
+
 
 }

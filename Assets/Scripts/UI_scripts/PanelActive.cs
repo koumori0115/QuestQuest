@@ -18,11 +18,8 @@ public class PanelActive: MonoBehaviour {
 
     public void MenuPanelStartActive()
     {
-        if (GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.STOP)
-        {
-            GameObject.Find("Chara").GetComponent<Player>().step = Player.STEP.WAIT;
             MenuPanel.SetActive(true);
-        }
+        
     }
     public void MenuPanelReturnActive()
     {
@@ -41,10 +38,5 @@ public class PanelActive: MonoBehaviour {
     public void ItemPanelNonActive()
     {
         ItemPanel.SetActive(false);
-    }
-
-    public void PlayerStart()
-    {
-        GameObject.Find("Chara").GetComponent<Player>().moveStart(0.1f);
     }
 }
