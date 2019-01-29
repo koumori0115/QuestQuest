@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Log : MonoBehaviour {
-
+    
     public List<string> information = new List<string>();
     [SerializeField] Text uiText;   // uiTextへの参照
     [SerializeField] GameObject scroll;
@@ -16,14 +16,13 @@ public class Log : MonoBehaviour {
     private float timeUntilDisplay = 0;     // 表示にかかる時間
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
     private int lastUpdateCharCount = -1;       // 表示中の文字数
-    bool saisei = false;
+    public bool saisei = false;
     //itemlogが0以外だったらitemを参照したlogになる
     int itemlog = 0;
     
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -39,14 +38,14 @@ public class Log : MonoBehaviour {
                     SetSentence();
                 }
                      
-                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
                     if (itemlog == 0)
                     {
-                        GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
+                        
                     }
                     else
                     {

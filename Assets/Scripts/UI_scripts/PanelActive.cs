@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PanelActive: MonoBehaviour {
     [SerializeField] GameObject MenuPanel;
     [SerializeField] GameObject ItemPanel;
+    [SerializeField] GameObject AnswerButton;
 
 	// Use this for initialization
 	void Start () {
@@ -16,17 +17,13 @@ public class PanelActive: MonoBehaviour {
 		
 	}
 
-    public void MenuPanelStartActive()
+    public void MenuPanelActive()
     {
-        if (GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.STOP)
+        if (GameObject.Find("UI_scripts").GetComponent<Log>().saisei == false)
         {
-            GameObject.Find("Chara").GetComponent<Player>().step = Player.STEP.WAIT;
             MenuPanel.SetActive(true);
         }
-    }
-    public void MenuPanelReturnActive()
-    {
-        MenuPanel.SetActive(true);
+        
     }
     public void MenuPanelNonActive()
     {
@@ -40,11 +37,18 @@ public class PanelActive: MonoBehaviour {
     }
     public void ItemPanelNonActive()
     {
-        ItemPanel.SetActive(false);
+        if (GameObject.Find("UI_scripts").GetComponent<Log>().saisei == false)
+        {
+            ItemPanel.SetActive(false);
+        }
+        
     }
-
-    public void PlayerStart()
+    public void AnswerActive()
     {
-        GameObject.Find("Chara").GetComponent<Player>().moveStart(0.1f);
+        AnswerButton.SetActive(true);
+    }
+    public void AnswerNonActive()
+    {
+        AnswerButton.SetActive(false);
     }
 }

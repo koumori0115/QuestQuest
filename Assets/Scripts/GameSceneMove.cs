@@ -18,4 +18,9 @@ public class GameSceneMove : MonoBehaviour {
     {
         SceneManager.LoadScene("GameOver");
     }
+
+    public void Title()
+    {
+        SceneManager.LoadScene("Title");
+    }
 }

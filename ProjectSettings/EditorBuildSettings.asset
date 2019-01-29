@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 6277cfb0047fe3344aeeeed3dcbad9a2
   - enabled: 0
@@ -23,7 +23,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GameOver.unity
     guid: 264060f07d5104243a46ddc1fc7f4d23
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Quest1.unity
     guid: ec28817ec532ac14eb07a6e565cd530e
+  - enabled: 1
+    path: Assets/Scenes/mainmap_NE.unity
+    guid: da3f9402a5e5f7f41854651fb4c27e09
+  - enabled: 1
+    path: Assets/Scenes/mainmap_SE.unity
+    guid: 0070718a3836a874da848adebb925c29
+  - enabled: 1
+    path: Assets/Scenes/mainmap_NW.unity
+    guid: 66928febff1c1114590737938a44c3db
+  - enabled: 1
+    path: Assets/Scenes/mainmap_SW.unity
+    guid: b4c10e28499f1e145aafe30d4b33d469
   m_configObjects: {}

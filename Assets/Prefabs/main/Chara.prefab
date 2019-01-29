@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 50408816837050344}
   - component: {fileID: 95184977718532738}
   - component: {fileID: 61015546379435996}
+  - component: {fileID: 114450152419218044}
   m_Layer: 0
   m_Name: Chara
   m_TagString: Untagged
@@ -84,7 +85,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -158,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!81 &81320420031942466
 AudioListener:
@@ -185,6 +186,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114450152419218044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748355341521032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d663b32cb60c02743ac2ca2f38c26b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114802080461989670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,7 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d1bd65db3097344ab2b0a664926396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  step: 0
   direction:
   - {fileID: 7400000, guid: da513dbce8892a6449f47279f416dcdc, type: 2}
   - {fileID: 7400000, guid: 14210e08c2696ad43ad13691c58574c4, type: 2}
