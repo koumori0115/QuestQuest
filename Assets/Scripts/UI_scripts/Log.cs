@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Log : MonoBehaviour {
-
+    
     public List<string> information = new List<string>();
     [SerializeField] Text uiText;   // uiTextへの参照
     [SerializeField] GameObject scroll;
@@ -16,14 +16,13 @@ public class Log : MonoBehaviour {
     private float timeUntilDisplay = 0;     // 表示にかかる時間
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
     private int lastUpdateCharCount = -1;       // 表示中の文字数
-    bool saisei = false;
+    public bool saisei = false;
     //itemlogが0以外だったらitemを参照したlogになる
     int itemlog = 0;
     
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame

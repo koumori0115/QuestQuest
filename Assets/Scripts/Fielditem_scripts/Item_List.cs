@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item_List : MonoBehaviour {
+    static Item_List itemlist;
     List<ItemsandChara> list = new List<ItemsandChara>();
     List<GameObject> useItems = new List<GameObject>();
     GameObject itemPanel;
     private void Awake()
     {
-        
+        if (itemlist == null)
+        {
+            DontDestroyOnLoad(this);
+            itemlist = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
     // Use this for initialization
     void Start () {
-		
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {

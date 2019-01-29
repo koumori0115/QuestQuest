@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour
 {
     //0,1,2,3の順で前、後ろ、左、右で対応
+    static Player player;
     int lastDirection = 1;
     int prevDirection = 4;
     int[,] walk_direction = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 }, { 0, 0 } };
     Rigidbody2D rb2D;
-    Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
-    Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保
 
     //animation用変数
     public AnimationClip[] direction = new AnimationClip[4];       //Direciton切り替え用
@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     Animator animator;
     private AnimatorOverrideController overrideController;
     AnimatorStateInfo stateInfo;
-    bool button_h = false;
     bool flagSerch = true;
     [SerializeField] GameObject moveButton;
     int waitTime = 0;
@@ -30,11 +29,25 @@ public class Player : MonoBehaviour
     bool moveFlg = false;
     bool returnMove = false;
 
+    private void Awake()
+    {
+        if (player == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(GameObject.Find("Canvas").gameObject);
+            DontDestroyOnLoad(GameObject.Find("UI_scripts").gameObject);
+            player = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.Log("destroy");
+        }
+    }
 
     void Start()
     {
-        target = transform.position;
-        prevPos = target;
+        
         animator = GetComponent<Animator>();
         overrideController = new AnimatorOverrideController
         {
@@ -123,34 +136,12 @@ public class Player : MonoBehaviour
 
     }
 
-    public static float MultipleRound(float value, float multiple)
-    {
-        return MultipleFloor(value + multiple * 0.5f, multiple);
-    }
-
-    /// <summary>Inp
-    /// より小さい倍数を求める（倍数で切り捨てられるような値）
-    ///（例）倍数 = 10 のとき、12 → 10, 17 → 10
-    /// </summary>
-    /// <param name="value">入力値</param>
-    /// <param name="multiple">倍数</param>
-    /// <returns>倍数で切り捨てた値</returns>
-    public static float MultipleFloor(float value, float multiple)
-    {
-        return Mathf.Floor(value / multiple) * multiple;
-    }
 
 
     void ChangeChip(AnimationClip d, string name)
     {
         overrideController[name] = d;
         animator.runtimeAnimatorController = overrideController;
-    }
-
-
-    public void moveStart(float wait)
-    {
-        Invoke("waitEnd", wait);
     }
 
     public void OnCollisionStay2D(Collision2D collision)
