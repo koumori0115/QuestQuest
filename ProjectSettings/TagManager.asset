@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - button
+  - SE
+  - NE
+  - NW
+  - SW
+  - Quest
   layers:
   - Default
   - TransparentFX
