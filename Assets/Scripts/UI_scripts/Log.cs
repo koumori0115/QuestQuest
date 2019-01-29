@@ -18,7 +18,7 @@ public class Log : MonoBehaviour {
     private int lastUpdateCharCount = -1;       // 表示中の文字数
     public bool saisei = false;
     //itemlogが0以外だったらitemを参照したlogになる
-    int itemlog = 0;
+    ItemsandChara eventMethod;
     
 
     // Use this for initialization
@@ -43,14 +43,12 @@ public class Log : MonoBehaviour {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
-                    if (itemlog == 0)
+                    if (eventMethod != null)
                     {
-                        
+                        eventMethod.eventResult();
+                        eventMethod = null;
                     }
-                    else
-                    {
-                        itemlog = 0;
-                    }
+                    
                     saisei = false;
 
                 }
@@ -112,7 +110,7 @@ public class Log : MonoBehaviour {
         }
     }
 
-    public void setInformation(List<string> information, int i)
+    public void setInformation(List<string> information, ItemsandChara i)
     {
         if (!saisei)
         {
@@ -124,7 +122,7 @@ public class Log : MonoBehaviour {
                 this.information.Add(s);
             }
         }
-        itemlog = i;
+        eventMethod = i;
     }
 
 
