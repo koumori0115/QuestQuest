@@ -25,7 +25,7 @@ public class BattleLog : MonoBehaviour
     bool turn = false;
     bool saisei = false;
     bool efecton = false;
-    SceneMove scene = new SceneMove();
+    GameSceneMove scene = new GameSceneMove();
     PlayerStatus player;
     
     int damage = 0;

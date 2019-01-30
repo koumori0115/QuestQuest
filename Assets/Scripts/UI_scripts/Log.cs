@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Log : MonoBehaviour {
-
+    
     public List<string> information = new List<string>();
     [SerializeField] Text uiText;   // uiTextへの参照
     [SerializeField] GameObject scroll;
@@ -16,12 +16,13 @@ public class Log : MonoBehaviour {
     private float timeUntilDisplay = 0;     // 表示にかかる時間
     private float timeBeganDisplay = 1;         // 文字列の表示を開始した時間
     private int lastUpdateCharCount = -1;       // 表示中の文字数
-    bool saisei = false;
+    public bool saisei = false;
+    //itemlogが0以外だったらitemを参照したlogになる
+    ItemsandChara eventMethod;
     
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -32,17 +33,22 @@ public class Log : MonoBehaviour {
             if (IsDisplayComplete())
             {
                 //最後の文章ではない & ボタンが押された
-                if (information.Count > 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                if (information.Count > 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     SetSentence();
                 }
                      
-                else if (information.Count == 0 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && GameObject.Find("Chara").GetComponent<Player>().step == Player.STEP.WAIT)
+                else if (information.Count == 0 && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
-                    GameObject.Find("Chara").GetComponent<Player>().moveStart(0.3f);
+                    if (eventMethod != null)
+                    {
+                        eventMethod.eventResult();
+                        eventMethod = null;
+                    }
+                    
                     saisei = false;
 
                 }
@@ -50,7 +56,7 @@ public class Log : MonoBehaviour {
             else
             {
                 //ボタンが押された
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)))
                 {
                     timeUntilDisplay = 0; //※1
                 }
@@ -103,5 +109,21 @@ public class Log : MonoBehaviour {
             }
         }
     }
+
+    public void setInformation(List<string> information, ItemsandChara i)
+    {
+        if (!saisei)
+        {
+            menuButton.SetActive(false);
+            scroll.SetActive(true);
+            saisei = true;
+            foreach (string s in information)
+            {
+                this.information.Add(s);
+            }
+        }
+        eventMethod = i;
+    }
+
 
 }
