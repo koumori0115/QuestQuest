@@ -218,7 +218,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 4367029834351d1468f113c6c7a2fdae, type: 2}
   - {fileID: 7400000, guid: 9f1ca9ab71adc5447a4a214d908fe057, type: 2}
   - {fileID: 7400000, guid: 9edff7ad296652a4d943250ef16038ad, type: 2}
-  moveButton: {fileID: 0}
+  moveButton: {fileID: 1317882649501486, guid: 2253e2e567b52084db9be1f1cdb88947, type: 2}
 --- !u!212 &212092371523973064
 SpriteRenderer:
   m_ObjectHideFlags: 1

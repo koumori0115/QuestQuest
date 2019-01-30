@@ -62,7 +62,24 @@ public class Player : MonoBehaviour
     {
         if (!moveFlg)
         {
-            if (Input.GetKey(KeyCode.UpArrow) || lastDirection == 0)
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                lastDirection = 0;
+            }
+            else  if (Input.GetKey(KeyCode.DownArrow))
+            {
+                lastDirection = 1;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                lastDirection = 2;
+            } 
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                lastDirection = 3;
+            }
+            
+            if (lastDirection == 0)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                     Mathf.Floor(transform.position.y),
@@ -71,7 +88,7 @@ public class Player : MonoBehaviour
                 // rb2D.velocity = Vector3.up * 5;
                 moveFlg = true;
             }
-            else if (Input.GetKey(KeyCode.DownArrow) || lastDirection == 1)
+            else if (lastDirection == 1)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                    Mathf.Floor(transform.position.y),
@@ -80,7 +97,7 @@ public class Player : MonoBehaviour
                 //rb2D.velocity = Vector3.down * 5;
                 moveFlg = true;
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) || lastDirection == 2)
+            else if (lastDirection == 2)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                    Mathf.Floor(transform.position.y),
@@ -89,7 +106,7 @@ public class Player : MonoBehaviour
                 //                rb2D.velocity = Vector3.left * 5;
                 moveFlg = true;
             }
-            else if (Input.GetKey(KeyCode.RightArrow) || lastDirection == 3)
+            else if (lastDirection == 3)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                     Mathf.Floor(transform.position.y),
