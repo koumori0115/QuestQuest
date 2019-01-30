@@ -16,6 +16,6 @@ public class Key : UseItem {
 
     public override void ItemResult()
     {
-        log.setInformation(new List<string>() { "どこかの鍵みたいだ", "持ち主はだれだろう？"}, 1);
+        log.setInformation(new List<string>() { "どこかの鍵みたいだ", "持ち主はだれだろう？"});
     }
 }

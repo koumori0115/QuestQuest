@@ -54,8 +54,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information: []
   uiText: {fileID: 0}
-  scroll: {fileID: 0}
-  menuButton: {fileID: 0}
+  scroll: {fileID: 1947899012358870, guid: 2253e2e567b52084db9be1f1cdb88947, type: 2}
+  menuButton: {fileID: 1914273358014574, guid: 2253e2e567b52084db9be1f1cdb88947, type: 2}
+  saisei: 0
 --- !u!114 &114659247211906472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,5 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa5eaaf2891eb04c86d30d4d640322b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuPanel: {fileID: 0}
-  ItemPanel: {fileID: 0}
+  MenuPanel: {fileID: 1979185614583452, guid: 2253e2e567b52084db9be1f1cdb88947, type: 2}
+  ItemPanel: {fileID: 1024853980902592, guid: 2253e2e567b52084db9be1f1cdb88947, type: 2}
+  AnswerButton: {fileID: 1129323169638734, guid: 2253e2e567b52084db9be1f1cdb88947,
+    type: 2}
