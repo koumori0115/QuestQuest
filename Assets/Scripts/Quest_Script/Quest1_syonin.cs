@@ -26,6 +26,7 @@ public class Quest1_syonin : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
+        GameObject.Find("GameManager").GetComponent<WorldMove>().MoveScene("Battle");
         Debug.Log("eventresult");
     }
 
@@ -34,7 +35,7 @@ public class Quest1_syonin : ItemsandChara
     {
         if (event_flag)
         {
-            log.setInformation()
+            log.setInformation(event_text, this);
         }
     }
     

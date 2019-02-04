@@ -15,24 +15,11 @@ public class WorldMove : MonoBehaviour {
 		
 	}
 
-    public void Quest1()
+    public void MoveScene(string nextScene)
     {
-        SceneManager.LoadScene("Quest1");
+        SceneManager.LoadScene(nextScene);
     }
 
-    public void Quest2()
-    {
-        SceneManager.LoadScene("Quest2");
-    }
 
-    public void Quest3()
-    {
-        SceneManager.LoadScene("Quest3");
-    }
-
-    public void Quest4()
-    {
-        SceneManager.LoadScene("Quest4");
-    }
 
 }

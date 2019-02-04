@@ -19,7 +19,7 @@ public class PanelActive: MonoBehaviour {
 
     public void MenuPanelActive()
     {
-        if (GameObject.Find("UI_scripts").GetComponent<Log>().saisei == false)
+        if (GameObject.Find("GameManager").GetComponent<Log>().saisei == false)
         {
             MenuPanel.SetActive(true);
         }
@@ -37,7 +37,7 @@ public class PanelActive: MonoBehaviour {
     }
     public void ItemPanelNonActive()
     {
-        if (GameObject.Find("UI_scripts").GetComponent<Log>().saisei == false)
+        if (GameObject.Find("GameManager").GetComponent<Log>().saisei == false)
         {
             ItemPanel.SetActive(false);
         }

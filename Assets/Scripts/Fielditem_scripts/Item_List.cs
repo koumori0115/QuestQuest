@@ -11,12 +11,12 @@ public class Item_List : MonoBehaviour {
     {
         if (itemlist == null)
         {
-            DontDestroyOnLoad(this);
+            DontDestroyGameObject.DontDestroyOnLoad(gameObject);
             itemlist = this;
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
     // Use this for initialization
