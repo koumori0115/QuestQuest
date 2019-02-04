@@ -33,9 +33,7 @@ public class Player : MonoBehaviour
     {
         if (player == null)
         {
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.Find("Canvas").gameObject);
-            DontDestroyOnLoad(GameObject.Find("UI_scripts").gameObject);
+            DontDestroyGameObject.DontDestroyOnLoad(gameObject);
             player = this;
         }
         else
@@ -142,7 +140,8 @@ public class Player : MonoBehaviour
         
         touchDirection();
 
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && flagSerch == true)
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) 
+            && flagSerch == true && GameObject.Find("GameManager").GetComponent<Log>().saisei == false)
         {
             if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject())
             {

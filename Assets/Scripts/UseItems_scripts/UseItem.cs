@@ -6,7 +6,7 @@ public abstract class UseItem : MonoBehaviour {
     protected Log log;
 	// Use this for initialization
 	public virtual void Start () {
-        log = GameObject.Find("UI_scripts").GetComponent<Log>();
+        log = GameObject.Find("GameManager").GetComponent<Log>();
 	}
 	
 	// Update is called once per frame

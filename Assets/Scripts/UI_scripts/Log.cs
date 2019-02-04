@@ -100,6 +100,7 @@ public class Log : MonoBehaviour {
     {
         if (!saisei)
         {
+            this.information.Clear();
             menuButton.SetActive(false);
             scroll.SetActive(true);
             saisei = true;
@@ -114,6 +115,7 @@ public class Log : MonoBehaviour {
     {
         if (!saisei)
         {
+            this.information.Clear();
             menuButton.SetActive(false);
             scroll.SetActive(true);
             saisei = true;
