@@ -12,10 +12,8 @@ public class Quest1_enemy : ItemsandChara
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "た、助けてください！" });
+        set_eventText(new string[] { "た、助けてください", "お願いします！"});
         set_nomalText(new string[] { "" });
-
-
     }
 
     // Update is called once per frame
@@ -26,19 +24,32 @@ public class Quest1_enemy : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
-        Debug.Log("eventresult");
+
     }
     public override void information()
     {
-        base.information();
-        if (i == 0)
+        if (event_flag)
         {
-            set_eventText(new string[] { "た、助けてください！" });
-            i++;
+            if (i > 1)
+            {
+                Debug.Log(i);
+                set_eventText(new string[] { "助けてって言ったでしょ！", "もう面倒くさい。", "お前から殺すわ" });
+                log.setInformation(event_text, this);
+            }
+            else
+            {
+                i++;
+                log.setInformation(event_text);
+            }
         }
-        else if (i == 1)
+        else
         {
-            set_eventText(new string[] { "助けてって言ってるでしょ！？もういいわよアンタから叩き切ってやるッ！！" });
+            log.setInformation(nomal_text);
         }
+        
+        
+        
+        
+            
     }
 }

@@ -12,7 +12,7 @@ public class Quest1_syonin : ItemsandChara
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "貴様も奴らの仲間か！ならば叩き潰すまでッ！！" });
+        set_eventText(new string[] { "貴様も奴らの仲間か！", "ならば叩き潰すまでッ！！" });
         set_nomalText(new string[] { "" });
 
 
@@ -26,22 +26,17 @@ public class Quest1_syonin : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
+        GameObject.Find("GameManager").GetComponent<WorldMove>().MoveScene("Battle");
         Debug.Log("eventresult");
     }
 
-    /*
+    
     public override void information()
     {
-        base.information();
-        if (i == 0)
+        if (event_flag)
         {
-            set_eventText(new string[] { "た、助けてください！" });
-            i++;
-        }
-        else if (i == 1)
-        {
-            set_eventText(new string[] { "助けてって言ってるでしょ！？もういいわよアンタから叩き切ってやるッ！！" });
+            log.setInformation(event_text, this);
         }
     }
-    */
+    
 }

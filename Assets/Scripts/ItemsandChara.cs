@@ -15,7 +15,7 @@ public class ItemsandChara : MonoBehaviour {
     }
     public virtual void Start () {
         zahyou = transform.position;
-        log = GameObject.Find("UI_scripts").GetComponent<Log>();
+        log = GameObject.Find("GameManager").GetComponent<Log>();
         GameObject.Find("GameManager").GetComponent<Item_List>().setItems(this);
 	}
 	
@@ -29,7 +29,6 @@ public class ItemsandChara : MonoBehaviour {
         if (event_flag)
         {
             log.setInformation(event_text);
-            eventResult();
         }
         else
         {

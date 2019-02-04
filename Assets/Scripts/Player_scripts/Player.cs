@@ -33,9 +33,7 @@ public class Player : MonoBehaviour
     {
         if (player == null)
         {
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.Find("Canvas").gameObject);
-            DontDestroyOnLoad(GameObject.Find("UI_scripts").gameObject);
+            DontDestroyGameObject.DontDestroyOnLoad(gameObject);
             player = this;
         }
         else
@@ -62,7 +60,24 @@ public class Player : MonoBehaviour
     {
         if (!moveFlg)
         {
-            if (Input.GetKey(KeyCode.UpArrow) || lastDirection == 0)
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                lastDirection = 0;
+            }
+            else  if (Input.GetKey(KeyCode.DownArrow))
+            {
+                lastDirection = 1;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                lastDirection = 2;
+            } 
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                lastDirection = 3;
+            }
+            
+            if (lastDirection == 0)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                     Mathf.Floor(transform.position.y),
@@ -71,7 +86,7 @@ public class Player : MonoBehaviour
                 // rb2D.velocity = Vector3.up * 5;
                 moveFlg = true;
             }
-            else if (Input.GetKey(KeyCode.DownArrow) || lastDirection == 1)
+            else if (lastDirection == 1)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                    Mathf.Floor(transform.position.y),
@@ -80,7 +95,7 @@ public class Player : MonoBehaviour
                 //rb2D.velocity = Vector3.down * 5;
                 moveFlg = true;
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) || lastDirection == 2)
+            else if (lastDirection == 2)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                    Mathf.Floor(transform.position.y),
@@ -89,7 +104,7 @@ public class Player : MonoBehaviour
                 //                rb2D.velocity = Vector3.left * 5;
                 moveFlg = true;
             }
-            else if (Input.GetKey(KeyCode.RightArrow) || lastDirection == 3)
+            else if (lastDirection == 3)
             {
                 startPos = new Vector3(Mathf.Floor(transform.position.x),
                     Mathf.Floor(transform.position.y),
@@ -125,7 +140,8 @@ public class Player : MonoBehaviour
         
         touchDirection();
 
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) && flagSerch == true)
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonDown(0)) 
+            && flagSerch == true && GameObject.Find("GameManager").GetComponent<Log>().saisei == false)
         {
             if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject())
             {
