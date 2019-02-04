@@ -1,38 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Quest2_syojo : ItemsandChara
+public class Quest3_mafia : ItemsandChara
 {
     [SerializeField] GameObject AnswerButton;
     [SerializeField] GameObject answer;
 
-    bool yes =  false;
+    bool yes = false;
 
     // Use this for initialization
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "お兄さん、誰？ここのお山危ないよ。　…お母さんに言われて探しに来たの？" });
-        //次に選択肢を出して、自分が何者か答えるかどうかで次が変わる。考えているのは答えないと不審者扱いされて少女が逃げて死ぬ。とか？現実はそれほど優しくないんだ
-        //後はワードのメモ通りですかねぇ
+        set_eventText(new string[] { "こんな所にお客さんとは珍しいな。何か用かい？ いや、久々のお客さんだ。何かもてなしの料理を作ろう" });
+        //Wordの目も見てどうぞ
         //set_nomalText(new string[] { "　" });
 
-        if (yes == true) {
+        if (yes == true)
+        {
             patarn_y();
         }
-        else {
-
+        else
+        {
+            patarn_n();
         }
 
     }
 
     // Update is called once per frame
     void Update()
-{
+    {
 
-}
+    }
 
     public override void eventResult()
     {
@@ -40,7 +40,7 @@ public class Quest2_syojo : ItemsandChara
         AnswerButton.SetActive(true);
         while (answer.GetComponent<Yesno>().question == 0) { };
         //trueなら「はい」、falseなら「いいえ」
-        if(answer.GetComponent<Yesno>().question == 1)
+        if (answer.GetComponent<Yesno>().question == 1)
         {
 
         }
@@ -51,7 +51,13 @@ public class Quest2_syojo : ItemsandChara
     }
     public void patarn_y()
     {
-        set_eventText(new string[] { "やっぱりそうなんだ。でもお母さんの為に薬草取ってこないといけないの。それを取ったら帰るから、お兄さん良かったらついてきて" });
+        set_eventText(new string[] { "そうかい、それは残念だ。まあゆっくりしていってくれ。" });
+        log.setInformation(event_text);
+    }
+
+    public void patarn_n()
+    {
+        set_eventText(new string[] { "そうかそうか。なら、今から作るから少し待ってくれ" });
         log.setInformation(event_text);
     }
 
