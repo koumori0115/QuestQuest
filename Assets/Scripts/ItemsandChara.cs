@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemsandChara : MonoBehaviour {
-    Log log;
+    protected Log log;
     public bool event_flag = false;
-    List<string> nomal_text = new List<string>();
-    List<string> event_text = new List<string>();
+    protected List<string> nomal_text = new List<string>();
+    protected List<string> event_text = new List<string>();
     protected Vector3 zahyou;
     private void Awake()
     {
@@ -39,6 +39,7 @@ public class ItemsandChara : MonoBehaviour {
 
     public void set_nomalText(string[] text)
     {
+        nomal_text.Clear();
         foreach(string s in text)
         {
             nomal_text.Add(s);
@@ -46,6 +47,7 @@ public class ItemsandChara : MonoBehaviour {
     }
     public void set_eventText(string[] text)
     {
+        event_text.Clear();
         foreach (string s in text)
         {
             event_text.Add(s);
