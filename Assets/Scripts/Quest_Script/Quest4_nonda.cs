@@ -12,6 +12,7 @@ public class Quest4_nonda : ItemsandChara
         base.Start();
         set_eventText(new string[] { "泥棒？ああ、最近噂の奴か。生憎だが俺は知らねぇぞ。" });
         set_nomalText(new string[] {"だから、俺は知らねぇって" });
+        //イベントフラグを作って一通り話しかけたら実はこいつが犯人でしたは面白いだろうか
     }
 
     // Update is called once per frame
