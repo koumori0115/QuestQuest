@@ -259,4 +259,9 @@ public class Player : MonoBehaviour
             lastDirection = 3;
         }
     }
+    
+    public void Serchflag(bool change)
+    {
+        flagSerch = change;
+    }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Quest4_bukio : ItemsandChara
 {
-    [SerializeField] GameObject AnswerButton;
-    [SerializeField] GameObject answer;
+    PanelActive AnswerButton;
+    Yesno answer;
 
     bool yes = false;
 
@@ -16,15 +16,8 @@ public class Quest4_bukio : ItemsandChara
         set_eventText(new string[] { "泥棒？ああ、最近噂のね。俺たちは特に被害にあってないよ。他をあたってみてくれ。" });
         //Wordの目も見てどうぞ
         set_nomalText(new string[] { "被害にはあってないよ。" });
-
-        if (yes == true)
-        {
-            
-        }
-        else
-        {
-
-        }
+        AnswerButton = GameObject.Find("GameManager").GetComponent<PanelActive>();
+        answer = GameObject.Find("GameManager").GetComponent<Yesno>();
 
     }
 
@@ -37,29 +30,34 @@ public class Quest4_bukio : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
-        AnswerButton.SetActive(true);
-        while (answer.GetComponent<Yesno>().question == 0) { };
-        //trueなら「はい」、falseなら「いいえ」
-        if (answer.GetComponent<Yesno>().question == 1)
-        {
+        AnswerButton.AnswerActive();
+        GameObject.Find("Chara").GetComponent<Player>().Serchflag(false);
+        StartCoroutine("Select");
 
-        }
-        else
-        {
 
-        }
     }
   
-    public override void information()
+
+    IEnumerator Select()
     {
-        if (event_flag)
+        Debug.Log("aaa");
+        while (answer.question == 0) {
+            yield return null;
+        }
+        //1なら「はい」、2なら「いいえ」
+
+        if (answer.question == 1)
         {
-            log.setInformation(event_text, this);
+
         }
         else
         {
-            log.setInformation(nomal_text);
+
         }
+        answer.question = 0;
+        AnswerButton.AnswerNonActive();
+        GameObject.Find("Chara").GetComponent<Player>().Serchflag(true);
+
     }
 
 

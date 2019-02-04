@@ -38,7 +38,7 @@ public class Quest4_armer : ItemsandChara
     {
         base.eventResult();
         AnswerButton.SetActive(true);
-        while (answer.GetComponent<Yesno>().question == 0) { };
+        while (answer.GetComponent<Yesno>().question == 0) { break; };
         //trueなら「はい」、falseなら「いいえ」
         if (answer.GetComponent<Yesno>().question == 1)
         {
