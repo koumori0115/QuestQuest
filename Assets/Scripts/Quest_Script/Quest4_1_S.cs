@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quest4_1_1 : ItemsandChara
+public class Quest4_1_S : ItemsandChara
 {
     [SerializeField] GameObject money;
 [SerializeField] string objectName;
