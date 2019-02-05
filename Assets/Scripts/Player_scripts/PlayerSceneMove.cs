@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSceneMove : MonoBehaviour {
 
+    List<string> wall;
 	// Use this for initialization
 	void Start () {
-		
+        wall = new List<string>();
+        wall.Add("ただいまこちらは通ることができません");
 	}
 	
 	// Update is called once per frame
@@ -37,5 +39,14 @@ public class PlayerSceneMove : MonoBehaviour {
             SceneManager.LoadScene("mainmap_NW");
             return;
         }
+
+        
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            GameObject.Find("GameManager").GetComponent<Log>().setInformation(wall);
+        }
     }
+}

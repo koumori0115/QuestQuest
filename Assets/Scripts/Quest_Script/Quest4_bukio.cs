@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class Quest4_bukio : ItemsandChara
 {
-    [SerializeField] GameObject AnswerButton;
-    [SerializeField] GameObject answer;
-
-    bool yes = false;
+    PanelActive AnswerButton;
+    Yesno answer;
 
     // Use this for initialization
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "泥棒？ああ、最近噂のね。俺たちは特に被害にあってないよ。他をあたってみてくれ。" });
+        set_eventText(new string[] { "泥棒？ああ、最近噂のね。", "俺たちは特に被害にあってないよ。", "他をあたってみてくれ。" });
         //Wordの目も見てどうぞ
         set_nomalText(new string[] { "被害にはあってないよ。" });
-
-        if (yes == true)
-        {
-            
-        }
-        else
-        {
-
-        }
+        AnswerButton = GameObject.Find("GameManager").GetComponent<PanelActive>();
+        answer = GameObject.Find("GameManager").GetComponent<Yesno>();
 
     }
 
@@ -37,19 +28,10 @@ public class Quest4_bukio : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
-        AnswerButton.SetActive(true);
-        while (answer.GetComponent<Yesno>().question == 0) { };
-        //trueなら「はい」、falseなら「いいえ」
-        if (answer.GetComponent<Yesno>().question == 1)
-        {
-
-        }
-        else
-        {
-
-        }
+        event_flag = false;
+        GameObject.Find("QuestFlag").GetComponent<Quest4_flag>().waepon = true;
     }
-  
+
     public override void information()
     {
         if (event_flag)
@@ -61,6 +43,4 @@ public class Quest4_bukio : ItemsandChara
             log.setInformation(nomal_text);
         }
     }
-
-
 }

@@ -43,6 +43,7 @@ public class Log : MonoBehaviour {
                     uiText.text = "";
                     scroll.SetActive(false);
                     menuButton.SetActive(true);
+                    GameObject.Find("Chara").GetComponent<Player>().Stopflag(false);
                     if (eventMethod != null)
                     {
                         eventMethod.eventResult();
@@ -103,6 +104,7 @@ public class Log : MonoBehaviour {
             this.information.Clear();
             menuButton.SetActive(false);
             scroll.SetActive(true);
+            GameObject.Find("Chara").GetComponent<Player>().Stopflag(true);
             saisei = true;
             foreach (string s in information)
             {
@@ -118,6 +120,7 @@ public class Log : MonoBehaviour {
             this.information.Clear();
             menuButton.SetActive(false);
             scroll.SetActive(true);
+            GameObject.Find("Chara").GetComponent<Player>().Stopflag(true);
             saisei = true;
             foreach (string s in information)
             {
