@@ -4,27 +4,13 @@ using UnityEngine;
 
 public class Quest4_yado : ItemsandChara
 {
-    [SerializeField] GameObject AnswerButton;
-    [SerializeField] GameObject answer;
-
-    bool yes = false;
-
     // Use this for initialization
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "泥棒ね、お客さんの話で聞いたことあるわ。その人、貧しい人に盗んだお金を渡しているみたいよ。" });
+        set_eventText(new string[] { "泥棒ね、お客さんの話で聞いたことあるわ。", "その人、貧しい子供に盗んだお金を渡しているみたいよ。" });
         //Wordの目も見てどうぞ
-        set_nomalText(new string[] { "私が聞いたのはそれぐらいかしら。" });
-
-        if (yes == true)
-        {
-
-        }
-        else
-        {
-
-        }
+        set_nomalText(new string[] { "お客さん以外に話すことはありません。" });
 
     }
 
@@ -37,17 +23,9 @@ public class Quest4_yado : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
-        AnswerButton.SetActive(true);
-        while (answer.GetComponent<Yesno>().question == 0) { };
-        //trueなら「はい」、falseなら「いいえ」
-        if (answer.GetComponent<Yesno>().question == 1)
-        {
-
-        }
-        else
-        {
-
-        }
+        event_flag = false;
+        set_nomalText(new string[] { "私が聞いたのはそれぐらいかしら。" });
+        GameObject.Find("QuestFlag").GetComponent<Quest4_flag>().yado = true;
     }
 
     public override void information()

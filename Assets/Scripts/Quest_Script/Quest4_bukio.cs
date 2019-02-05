@@ -7,13 +7,11 @@ public class Quest4_bukio : ItemsandChara
     PanelActive AnswerButton;
     Yesno answer;
 
-    bool yes = false;
-
     // Use this for initialization
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "泥棒？ああ、最近噂のね。俺たちは特に被害にあってないよ。他をあたってみてくれ。" });
+        set_eventText(new string[] { "泥棒？ああ、最近噂のね。", "俺たちは特に被害にあってないよ。", "他をあたってみてくれ。" });
         //Wordの目も見てどうぞ
         set_nomalText(new string[] { "被害にはあってないよ。" });
         AnswerButton = GameObject.Find("GameManager").GetComponent<PanelActive>();
@@ -30,35 +28,19 @@ public class Quest4_bukio : ItemsandChara
     public override void eventResult()
     {
         base.eventResult();
-        AnswerButton.AnswerActive();
-        GameObject.Find("Chara").GetComponent<Player>().Serchflag(false);
-        StartCoroutine("Select");
-
-
+        event_flag = false;
+        GameObject.Find("QuestFlag").GetComponent<Quest4_flag>().waepon = true;
     }
-  
 
-    IEnumerator Select()
+    public override void information()
     {
-        Debug.Log("aaa");
-        while (answer.question == 0) {
-            yield return null;
-        }
-        //1なら「はい」、2なら「いいえ」
-
-        if (answer.question == 1)
+        if (event_flag)
         {
-
+            log.setInformation(event_text, this);
         }
         else
         {
-
+            log.setInformation(nomal_text);
         }
-        answer.question = 0;
-        AnswerButton.AnswerNonActive();
-        GameObject.Find("Chara").GetComponent<Player>().Serchflag(true);
-
     }
-
-
 }

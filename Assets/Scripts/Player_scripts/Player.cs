@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     Vector3 startPos, nextPos;
     bool moveFlg = false;
-    bool returnMove = false;
+    bool LogStop = false;
 
     private void Awake()
     {
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!moveFlg)
+        if (!moveFlg && !LogStop)
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -263,5 +263,10 @@ public class Player : MonoBehaviour
     public void Serchflag(bool change)
     {
         flagSerch = change;
+    }
+
+    public void Stopflag(bool change)
+    {
+        LogStop = change;
     }
 }
