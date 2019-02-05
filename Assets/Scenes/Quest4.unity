@@ -242,7 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a52fa4c9365ed04ab268c1f47053ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event_flag: 0
+  event_flag: 1
+  allFlag: 1
 --- !u!114 &428349196 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114811162013838568, guid: 071d7515ae1b632469c302b19d89a7c8,
@@ -563,6 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 613536378}
+  - component: {fileID: 613536379}
   m_Layer: 0
   m_Name: QuestFlag
   m_TagString: Untagged
@@ -583,6 +585,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &613536379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 613536377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7360d46e753f948bb04b29b22318a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: 0
+  waepon: 0
+  armer: 0
+  yado: 0
+  child1: 0
+  child2: 0
+  child3: 0
+  childs: {fileID: 1101454088682984, guid: e5994a1beac54244e8ee81ad511d6df6, type: 2}
 --- !u!1 &929599630
 GameObject:
   m_ObjectHideFlags: 0
@@ -25758,7 +25779,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1947899012358870, guid: 76999afe568a1654bb5cc6e602035833, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76999afe568a1654bb5cc6e602035833, type: 2}
@@ -26162,7 +26183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a40ba7bac47124d8c1c27688167ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event_flag: 0
+  event_flag: 1
 --- !u!1 &1478118937
 GameObject:
   m_ObjectHideFlags: 0
@@ -26203,7 +26224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b89a5470f97ba41ba8198a7015217c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event_flag: 0
+  event_flag: 1
 --- !u!1 &1493442219
 GameObject:
   m_ObjectHideFlags: 0
@@ -46486,7 +46507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcd79cba62838741aa3c7b30dab5321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event_flag: 0
+  event_flag: 1
 --- !u!1 &2138584390
 GameObject:
   m_ObjectHideFlags: 0
@@ -46527,4 +46548,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a40ba7bac47124d8c1c27688167ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event_flag: 1
+  event_flag: 0

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quest4_item : ItemsandChara
+public class Quest4_poorChild3 : ItemsandChara
 {
     // Use this for initialization
     public override void Start()
     {
         base.Start();
-        set_eventText(new string[] { "泥棒…悪い人ではないということしかわからないかな。", "少なくとも、普通の人にはいい印象みたいだね。" });
+        set_eventText(new string[] { "たまにふかふかのベッドでも", "ねむらせてくれるよねー。", "つぎいつかなぁ？" });
         //Wordの目も見てどうぞ
-        set_nomalText(new string[] { "悪い人ではないみたいだよ。" });
+        set_nomalText(new string[] { "ふかふかのベッド♪","ふかふかのベッド♪" });
 
     }
 
@@ -24,7 +24,7 @@ public class Quest4_item : ItemsandChara
     {
         base.eventResult();
         event_flag = false;
-        GameObject.Find("QuestFlag").GetComponent<Quest4_flag>().item = true;
+        GameObject.Find("QuestFlag").GetComponent<Quest4_flag>().child3 = true;
     }
 
     public override void information()
@@ -38,6 +38,4 @@ public class Quest4_item : ItemsandChara
             log.setInformation(nomal_text);
         }
     }
-
-
 }
